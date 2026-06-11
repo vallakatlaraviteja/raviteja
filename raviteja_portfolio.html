@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raviteja Vallakatla — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0c0e;
+    --bg2: #111318;
+    --bg3: #16191f;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.18);
+    --text: #f0f0ee;
+    --muted: #8a8f99;
+    --accent: #4ade80;
+    --accent2: #22c55e;
+    --accent-dim: rgba(74,222,128,0.08);
+    --accent-dim2: rgba(74,222,128,0.14);
+    --sans: 'Space Grotesk', sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 60px;
+    background: rgba(11,12,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  .nav-cta {
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--accent);
+    border: 0.5px solid var(--accent);
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-dim2); text-decoration: none; }
+
+  /* ---------- HERO ---------- */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .hero-name-accent { color: var(--accent); }
+
+  .hero-title {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .hero-desc strong { color: var(--text); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #0a1a0f;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; text-decoration: none; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    border: 0.5px solid var(--border-hover);
+    padding: 11px 22px;
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 0.5px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-item {}
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    color: var(--accent);
+    font-weight: 700;
+    display: block;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section {
+    padding: 96px 5%;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--border-hover);
+  }
+
+  .section-heading {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    line-height: 1.1;
+  }
+
+  /* ---------- ABOUT / SKILLS ---------- */
+  #about {
+    background: var(--bg2);
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  .skills-block { margin-top: 0; }
+
+  .skills-heading {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    margin-bottom: 16px;
+  }
+
+  .skill-group { margin-bottom: 24px; }
+
+  .skill-group-name {
+    font-size: 12px;
+    color: var(--accent);
+    font-family: var(--mono);
+    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--text);
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  #experience { background: var(--bg); }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 0.5px solid var(--border);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: 0.5px solid var(--border); }
+
+  .exp-meta {}
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .exp-location {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .exp-content {}
+
+  .exp-role {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border-hover);
+    font-family: var(--mono);
+  }
+
+  .exp-bullets li strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- PROJECTS ---------- */
+  #projects { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card:hover { border-color: var(--border-hover); }
+
+  .project-card.featured {
+    grid-column: span 2;
+    background: var(--bg3);
+    border-color: rgba(74,222,128,0.2);
+  }
+
+  .project-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .project-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 0.5px solid rgba(74,222,128,0.3);
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .project-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .project-desc strong { color: var(--text); font-weight: 500; }
+
+  .project-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .highlight-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tech-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .project-link:hover { text-decoration: underline; }
+
+  /* ---------- CONTACT ---------- */
+  #contact { background: var(--bg); }
+
+  .contact-inner {
+    max-width: 640px;
+  }
+
+  .contact-text {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    color: var(--text);
+  }
+
+  .contact-item:hover { border-color: var(--border-hover); text-decoration: none; }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-dim);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--text);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 32px 5%;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-back {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .footer-back:hover { color: var(--accent); text-decoration: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    section { padding: 64px 4%; }
+    .about-layout { grid-template-columns: 1fr; gap: 48px; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">rv.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ravitejavallakatla@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1 class="hero-name">
+      Ravi<span class="hero-name-accent">teja</span><br/>
+      Vallakatla
+    </h1>
+    <p class="hero-title">Python Backend Engineer &amp; DevOps</p>
+    <p class="hero-desc">
+      I build and deploy <strong>production-grade backend systems</strong> — from Python services and containerized deployments to OCR pipelines and multi-database architectures. Based in Hyderabad, currently at Algonox Technologies.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View projects ↓</a>
+      <a href="https://github.com/vallakatlaraviteja" target="_blank" class="btn-ghost">GitHub ↗</a>
+      <a href="https://linkedin.com/in/ravitejavallakatla9848" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">1yr</span>
+        <span class="stat-label">Production experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">88%+</span>
+        <span class="stat-label">OCR accuracy achieved</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3+</span>
+        <span class="stat-label">Deployment environments</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Database platforms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + SKILLS -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-heading">Who I am</h2>
+  <div class="about-layout">
+    <div>
+      <div class="about-text">
+        <p>
+          I'm a <strong>Software Engineer Trainee at Algonox Technologies</strong> in Hyderabad, with hands-on production experience in Python backend development, containerized deployments, and multi-database systems.
+        </p>
+        <p>
+          My most significant contribution has been an <strong>OCR document preprocessing pipeline</strong> — a 4-model weighted scoring system (confidence, projection variance, line detection, aspect ratio) that pushed extraction accuracy from ~60% to <strong>88%+</strong>, deployed across UAT, PreProd, and Production using Docker and Linux.
+        </p>
+        <p>
+          I care about systems that are <strong>stable, debuggable, and actually work in production</strong> — not just in a local dev setup. I hold a B.Tech in CSE from Jayamukhi Institute of Technological Sciences, Warangal (2021–2025, CGPA 8.01).
+        </p>
+      </div>
+    </div>
+    <div class="skills-block">
+      <div class="skills-heading">Technical skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">DevOps / Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">systemd</span>
+          <span class="skill-tag">Docker Compose</span>
+          <span class="skill-tag">chmod / chown</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Oracle SQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MS SQL Server</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Backend / Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Camunda</span>
+          <span class="skill-tag">ABBYY OCR</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Firebase</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-heading">Where I've worked</h2>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <span class="exp-period">Jun 2025 — Present</span>
+      <div class="exp-company">Algonox Technologies</div>
+      <div class="exp-location">Hyderabad, India</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Software Engineer Trainee</div>
+      <ul class="exp-bullets">
+        <li>Developed <strong>Python backend components</strong> supporting real-time business logic and issue resolution in production workflows</li>
+        <li>Owned <strong>end-to-end deployments</strong> across UAT, PreProd, and Production environments — Docker builds, database migrations, live Linux server deployments with backup and permission management</li>
+        <li>Executed <strong>database migrations</strong> across Oracle SQL, MySQL, and MS SQL Server — DDL/DML scripts, backup procedures, post-deployment sanity checks</li>
+        <li>Managed <strong>ABBYY OCR systemd service</strong> configuration, environment variables, and license activation across client environments</li>
+        <li>Conducted <strong>structured code reviews</strong> to improve backend clarity, maintainability, and execution efficiency</li>
+        <li>Built, exported, and deployed <strong>Docker images</strong> for multiple services (camundaworkflow, business_rules_api, prediction_api) using <code>docker-compose --build --force-recreate</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-heading">Things I've built</h2>
+  <div class="projects-grid">
+
+    <!-- FEATURED: OCR -->
+    <div class="project-card featured">
+      <div class="project-badge">⭐ Flagship project</div>
+      <div class="project-title">OCR Format Detection &amp; Extraction Engine</div>
+      <p class="project-desc">
+        A <strong>production-deployed document preprocessing pipeline</strong> that dramatically improved OCR accuracy for enterprise clients. The core innovation is a 4-model weighted scoring system that detects optimal document orientation before extraction — pushing confidence from ~60% to <strong>88%+</strong>.
+      </p>
+      <div class="project-highlights">
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>4 scoring models — OCR confidence, projection variance, structural line detection, aspect ratio — with weighted combination per document type (text / table / mixed)</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Parallel processing via <code>ThreadPoolExecutor</code> for multi-model scoring without blocking the pipeline</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Confidence thresholding prevents over-rotation on ambiguous pages; document-aware PDF rotation and skew correction as pre-processing stage</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>End-to-end owned: UAT → PreProd → Production deployments, Docker image management, ABBYY OCR service configuration</span>
+        </div>
+      </div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">ThreadPoolExecutor</span>
+        <span class="tech-pill">ABBYY OCR</span>
+        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">Linux</span>
+        <span class="tech-pill">Camunda</span>
+        <span class="tech-pill">Oracle SQL</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">MS SQL Server</span>
+      </div>
+    </div>
+
+    <!-- Spotify App -->
+    <div class="project-card">
+      <div class="project-badge">Personal project</div>
+      <div class="project-title">Spotify-Inspired Music Streaming App</div>
+      <p class="project-desc">
+        A full-stack music streaming web application with playlist management, secure user authentication, and a responsive UI built from scratch.
+      </p>
+      <div class="project-highlights">
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Secure authentication and authorization via Firebase</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Responsive frontend with real-time form validation</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Playlist management and streaming features</span>
+        </div>
+      </div>
+      <div class="project-tech">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">HTML / CSS</span>
+        <span class="tech-pill">Firebase Auth</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/vallakatlaraviteja" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-heading">Let's work together</h2>
+  <div class="contact-inner">
+    <p class="contact-text">
+      I'm open to Python backend, DevOps, and deployment-focused roles. If you're working on something that involves production systems, containerized infrastructure, or data extraction pipelines — let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:ravitejavallakatla@gmail.com" class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">ravitejavallakatla@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/ravitejavallakatla9848" target="_blank" class="contact-item">
+        <div class="contact-icon">in</div>
+        <div>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/ravitejavallakatla9848</span>
+        </div>
+      </a>
+      <a href="https://github.com/vallakatlaraviteja" target="_blank" class="contact-item">
+        <div class="contact-icon">&lt;/&gt;</div>
+        <div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">github.com/vallakatlaraviteja</span>
+        </div>
+      </a>
+      <a href="tel:+917569915450" class="contact-item">
+        <div class="contact-icon">☎</div>
+        <div>
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+91 75699 15450</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Raviteja Vallakatla · Hyderabad, India</span>
+  <a href="#hero" class="footer-back">Back to top ↑</a>
+</footer>
+
+</body>
+</html>
